@@ -1,3 +1,5 @@
+Instalas las dependencias 
+
 npm{
 install read-card-flip
 install bootstrap
