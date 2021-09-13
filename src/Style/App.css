@@ -1,0 +1,71 @@
+.app {
+  text-align: center;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  justify-content: space-between;
+}
+
+.cards-container {
+  background: white;
+  max-width: 880px;
+  max-height: 540px;
+}
+
+.card {
+  display: inline-block;
+  margin: 5px;
+  height: calc(180px - 10px);
+  width: calc(220px - 10px);
+}
+
+.Juego {
+  background: white;
+  max-width: 350px;
+  max-height: 540px;
+  padding: 10px;
+  min-width: 300px;
+  min-height: 500px;
+}
+.btn {
+  font-size: 25px;
+  font-weight: bolder;
+  height: 35px;
+}
+
+.btn:hover {
+  background: black;
+  color: white;
+}
+.conter {
+  display: flex;
+  justify-content: space-between;
+}
+
+.card:hover {
+  transform: scale(0.98);
+}
+
+.card-image {
+  height: calc(180px - 10px);
+  width: calc(220px - 10px);
+}
+
+.Puntaje {
+  background: grean;
+  color: White;
+  font-size: 30px;
+  height: 50px;
+  width: 50px;
+}
+
+.menu {
+  background: grean;
+  color: White;
+  font-size: 30px;
+  height: 50px;
+  width: 50px;
+}
