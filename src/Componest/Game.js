@@ -13,16 +13,15 @@ function Game() {
   //sound
   //const [isPlay, setIsPlay] = useState(false);
 
-  var puntaje = 0;
+  //const puntaje = 0;
 
   //CARTAS
   const [cards, setCards] = useState([]);
   const [firstCard, setFirstCard] = useState({});
   const [secondCard, setSecondCard] = useState({});
+  const [counter, setCounter] = useState(0);
   //VERIFICAR
   //UNFLIPPED ES DONDE SE RESETEA EL JUEGO
-
-  const [puntaGO, setPuntaGO] = useState(0);
 
   const [unflippedCards, setUnflippedCards] = useState([]);
 
@@ -47,10 +46,6 @@ function Game() {
     checkForMatch();
   }, [secondCard]);
 
-  useEffect(() => {
-    updatePun();
-  }, []);
-
   const flipCard = (name, number) => {
     if (firstCard.name === name && firstCard.number === number) {
       return 0;
@@ -73,8 +68,8 @@ function Game() {
   // PUNTAJE
   const disableCards = () => {
     setDisabledCards([firstCard.number, secondCard.number]);
-    //puntaje = puntaje + 100;
-    console.log(puntaje);
+    ubgradePuntaj();
+
     resetCards();
   };
 
@@ -86,7 +81,6 @@ function Game() {
   const resetCards = () => {
     setFirstCard({});
     setSecondCard({});
-    console.log(puntaje);
   };
 
   const resetGame = () => {
@@ -94,10 +88,11 @@ function Game() {
     setCards([]);
     shuffleArray(images);
     setCards(images);
+    setCounter(0);
   };
   //Puntaje
-  const updatePun = () => {
-    setPuntaGO(puntaje);
+  const ubgradePuntaj = () => {
+    setCounter(counter + 100);
   };
 
   return (
@@ -105,7 +100,7 @@ function Game() {
       <div className="row ">
         <div className="row">
           <div className="col Barra_sup">
-            <Button className="btn" type="primary" size="large">
+            <Button className="btn" size="large">
               Regresar
             </Button>
             <Button
@@ -118,7 +113,7 @@ function Game() {
             </Button>
           </div>
 
-          <div className="row Barra_sup">Puntaje: {puntaGO}</div>
+          <div className="row Barra_sup">Puntaje: {counter}</div>
         </div>
         <div className="col-9 cards-container">
           {cards.map((card, index) => (

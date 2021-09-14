@@ -15,7 +15,7 @@ const Card = ({
 
   useEffect(() => {
     if (unflippedCards.includes(number)) {
-      setTimeout(() => setIsFlipped(false), 800);
+      setTimeout(() => setIsFlipped(false), 700);
     }
   }, [unflippedCards]);
 
