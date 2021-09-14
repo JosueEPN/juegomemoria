@@ -15,7 +15,7 @@ const Card = ({
 
   useEffect(() => {
     if (unflippedCards.includes(number)) {
-      setTimeout(() => setIsFlipped(false), 700);
+      setTimeout(() => setIsFlipped(false), 800);
     }
   }, [unflippedCards]);
 
@@ -31,6 +31,7 @@ const Card = ({
       setIsFlipped(!isFlipped);
     }
   };
+
   return (
     <div className="card">
       <ReactCardFlip isFlipped={isFlipped}>

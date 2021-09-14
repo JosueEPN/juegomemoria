@@ -2,8 +2,10 @@ import React, { useState, useEffect } from "react";
 //import song from "../media/Sound1.mp3";
 import Card from "./Card";
 import Music from "./Music";
+
 //import Menu from "./Menu.js";
 import "../Style/App.css";
+import { Button } from "antd";
 
 import { images } from "../import.js";
 
@@ -11,11 +13,19 @@ function Game() {
   //sound
   //const [isPlay, setIsPlay] = useState(false);
 
+  var puntaje = 0;
+
+  //CARTAS
   const [cards, setCards] = useState([]);
   const [firstCard, setFirstCard] = useState({});
   const [secondCard, setSecondCard] = useState({});
+  //VERIFICAR
+  //UNFLIPPED ES DONDE SE RESETEA EL JUEGO
+
+  const [puntaGO, setPuntaGO] = useState(0);
 
   const [unflippedCards, setUnflippedCards] = useState([]);
+
   const [disabledCards, setDisabledCards] = useState([]);
 
   const shuffleArray = (array) => {
@@ -27,6 +37,7 @@ function Game() {
     }
   };
 
+  // aqui se debe implementar el reinicio del juego
   useEffect(() => {
     shuffleArray(images);
     setCards(images);
@@ -36,9 +47,14 @@ function Game() {
     checkForMatch();
   }, [secondCard]);
 
+  useEffect(() => {
+    updatePun();
+  }, []);
+
   const flipCard = (name, number) => {
     if (firstCard.name === name && firstCard.number === number) {
       return 0;
+      //VOLTEA LA MISMA CARTA
     }
     if (!firstCard.name) {
       setFirstCard({ name, number });
@@ -54,9 +70,11 @@ function Game() {
       match ? disableCards() : unflipCards();
     }
   };
-
+  // PUNTAJE
   const disableCards = () => {
     setDisabledCards([firstCard.number, secondCard.number]);
+    //puntaje = puntaje + 100;
+    console.log(puntaje);
     resetCards();
   };
 
@@ -68,12 +86,40 @@ function Game() {
   const resetCards = () => {
     setFirstCard({});
     setSecondCard({});
+    console.log(puntaje);
+  };
+
+  const resetGame = () => {
+    setUnflippedCards([]);
+    setCards([]);
+    shuffleArray(images);
+    setCards(images);
+  };
+  //Puntaje
+  const updatePun = () => {
+    setPuntaGO(puntaje);
   };
 
   return (
     <div className="app">
       <div className="row ">
-        <div className="col Puntaje">Puntaje: </div>
+        <div className="row">
+          <div className="col Barra_sup">
+            <Button className="btn" type="primary" size="large">
+              Regresar
+            </Button>
+            <Button
+              className="btn"
+              type="primary"
+              size="large"
+              onClick={resetGame}
+            >
+              Reiniciar
+            </Button>
+          </div>
+
+          <div className="row Barra_sup">Puntaje: {puntaGO}</div>
+        </div>
         <div className="col-9 cards-container">
           {cards.map((card, index) => (
             <Card
