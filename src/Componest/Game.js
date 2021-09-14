@@ -4,6 +4,7 @@ import Card from "./Card";
 import Music from "./Music";
 import Direc1 from "../images/Blackjack.jpg";
 import Direc2 from "../images/Buscaminas.png";
+import { PlayCircleOutlined } from "@ant-design/icons";
 
 //import Menu from "./Menu.js";
 import "../Style/App.css";
@@ -22,6 +23,7 @@ function Game() {
   const [firstCard, setFirstCard] = useState({});
   const [secondCard, setSecondCard] = useState({});
   const [counter, setCounter] = useState(0);
+  const [Stargame, setStargame] = useState(true);
   //VERIFICAR
   //UNFLIPPED ES DONDE SE RESETEA EL JUEGO
 
@@ -88,15 +90,20 @@ function Game() {
   const resetGame = () => {
     setUnflippedCards([]);
     setCards([]);
+    setDisabledCards([]);
     shuffleArray(images);
     setCards(images);
     setCounter(0);
+    startgame(true);
   };
   //Puntaje
   const ubgradePuntaj = () => {
     setCounter(counter + 100);
   };
 
+  const startgame = () => {
+    setStargame(false);
+  };
   return (
     <div className="app">
       <div className="row ">
@@ -118,16 +125,30 @@ function Game() {
           <div className="row Barra_sup">Puntaje: {counter}</div>
         </div>
         <div className="col-9 cards-container">
-          {cards.map((card, index) => (
-            <Card
-              name={card.player}
-              number={index}
-              frontFace={card.src}
-              flipCard={flipCard}
-              unflippedCards={unflippedCards}
-              disabledCards={disabledCards}
-            />
-          ))}
+          {Stargame && (
+            <div className="Start">
+              <Button
+                type="primary"
+                onClick={startgame}
+                className="btn_start"
+                shape="circle"
+                ghost
+              >
+                <PlayCircleOutlined />
+              </Button>
+            </div>
+          )}
+          {!Stargame &&
+            cards.map((card, index) => (
+              <Card
+                name={card.player}
+                number={index}
+                frontFace={card.src}
+                flipCard={flipCard}
+                unflippedCards={unflippedCards}
+                disabledCards={disabledCards}
+              />
+            ))}
         </div>
       </div>
       <div className="row ">

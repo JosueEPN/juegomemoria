@@ -82,3 +82,27 @@
 h1 {
   margin: 0px;
 }
+
+.Start {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 880px;
+  height: 500px;
+  border: white 5px solid;
+  max-width: 880px;
+  max-height: 520px;
+}
+
+.btn_start {
+  font-size: 70px;
+  font-weight: bolder;
+  height: 80px;
+}
+
+.btn_start:hover {
+  font-size: 65px;
+  color: green;
+  font-weight: bolder;
+  height: 75px;
+}
