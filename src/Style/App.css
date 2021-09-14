@@ -9,27 +9,28 @@
   justify-content: space-between;
 }
 
+.Barra_sup {
+  display: flex;
+  background: grean;
+  color: White;
+  font-size: 30px;
+  height: 100%;
+  width: 100%;
+}
+
 .cards-container {
-  background: white;
+  border: white 5px solid;
   max-width: 880px;
-  max-height: 540px;
+  max-height: 520px;
 }
 
 .card {
   display: inline-block;
   margin: 5px;
-  height: calc(180px - 10px);
-  width: calc(220px - 10px);
+  height: calc(170px - 10px);
+  width: calc(210px - 10px);
 }
 
-.Juego {
-  background: white;
-  max-width: 350px;
-  max-height: 540px;
-  padding: 10px;
-  min-width: 300px;
-  min-height: 500px;
-}
 .btn {
   font-size: 25px;
   font-weight: bolder;
@@ -51,17 +52,8 @@
 }
 
 .card-image {
-  height: calc(180px - 10px);
-  width: calc(220px - 10px);
-}
-
-.Barra_sup {
-  display: flex;
-  background: grean;
-  color: White;
-  font-size: 30px;
-  height: 100%;
-  width: 100%;
+  height: calc(170px - 10px);
+  width: calc(210px - 10px);
 }
 
 .menu {
@@ -70,4 +62,23 @@
   font-size: 30px;
   height: 50px;
   width: 50px;
+}
+
+.Juego {
+  border: white 10px solid;
+  max-width: 350px;
+  max-height: 530px;
+  padding: 10px;
+  min-width: 300px;
+  min-height: 500px;
+}
+
+.Direction {
+  clip-path: circle(38.2% at 50% 50%);
+  max-width: 180px;
+  max-height: 180px;
+}
+
+h1 {
+  margin: 0px;
 }

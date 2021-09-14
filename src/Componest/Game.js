@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 //import song from "../media/Sound1.mp3";
 import Card from "./Card";
 import Music from "./Music";
+import Direc1 from "../images/Blackjack.jpg";
+import Direc2 from "../images/Buscaminas.png";
 
 //import Menu from "./Menu.js";
 import "../Style/App.css";
@@ -132,14 +134,14 @@ function Game() {
         <div className="col menu">Menu</div>
         <div className="col-3 Juego">
           <div className="row">
-            <div className="col-5">
-              <img
-                src="../images/sub25/2c.jpg"
-                className="img-fluid"
-                alt="..."
-              />
+            <div className="col-4">
+              <img src={Direc1} className="Direction" />
+              <h1> Black Jack</h1>
             </div>
-            <div className="col-5">Column</div>
+            <div className="col-4">
+              <img src={Direc2} className="Direction" />
+              <h1>Buscaminas</h1>
+            </div>
 
             <div className="col-2">
               <Music />
