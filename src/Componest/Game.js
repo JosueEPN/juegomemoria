@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
-//import song from "../media/Sound1.mp3";
+
+//import { Howl } from "howler";
 import Card from "./Card";
 import Music from "./Music";
 import Direc1 from "../images/Blackjack.jpg";
 import Direc2 from "../images/Buscaminas.png";
 import { PlayCircleOutlined } from "@ant-design/icons";
 
-//import Menu from "./Menu.js";
 import "../Style/App.css";
 import { Button } from "antd";
 
@@ -14,7 +14,16 @@ import { images } from "../import.js";
 
 function Game() {
   //sound
-  //const [isPlay, setIsPlay] = useState(false);
+  /*var sound = new Howl({
+    urls: [song],
+    autoplay: true,
+    loop: true,
+    volum: 0.5,
+  });
+
+  const playSoundMusic = () => {
+    sound.play();
+  };*/
 
   //const puntaje = 0;
 

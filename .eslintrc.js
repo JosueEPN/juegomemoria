@@ -16,5 +16,6 @@ module.exports = {
         "react/react-in-jsx-scope": "off",
         "react/jsx-key": "off",
         "react/prop-types": "off",
+        "react/no-unknown-property": "off",
     },
 };

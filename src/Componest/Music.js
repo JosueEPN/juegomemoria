@@ -1,36 +1,42 @@
-import React from "react";
+import React, { Component } from "react";
+import song from "../media/Sound1.mp3";
+import ReactHowler from "react-howler";
+import { Button } from "antd";
 
-class Music extends React.Component {
-	constructor(props) {
-		super(props);
+class Music extends Component {
+	constructor() {
+		super();
+
 		this.state = {
-			play: false,
-			pause: true,
+			playing: false,
 		};
-
-		this.url = "http://streaming.tdiradio.com:8000/house.mp3";
-		this.audio = new Audio(this.url);
+		this.handlePlay = this.handlePlay.bind(this);
+		this.handlePause = this.handlePause.bind(this);
 	}
 
-	play() {
+	handlePlay() {
 		this.setState({
-			play: true,
-			pause: false,
+			playing: true,
 		});
-		console.log(this.audio);
-		this.audio.play();
 	}
 
-	pause() {
-		this.setState({ play: false, pause: true });
-		this.audio.pause();
+	handlePause() {
+		this.setState({
+			playing: false,
+		});
 	}
 
 	render() {
 		return (
 			<div>
-				<button onClick={this.play}>Play</button>
-				<button onClick={this.pause}>Pause</button>
+				<ReactHowler
+					src={song}
+					playing={this.state.playing}
+					loop="true"
+					volume="0.05"
+				/>
+				;<Button onClick={this.handlePlay}>Play</Button>
+				<Button onClick={this.handlePause}>Pause</Button>
 			</div>
 		);
 	}
