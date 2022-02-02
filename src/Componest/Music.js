@@ -35,7 +35,7 @@ class Music extends Component {
 					loop="true"
 					volume="0.05"
 				/>
-				;<Button onClick={this.handlePlay}>Play</Button>
+				<Button onClick={this.handlePlay}>Play</Button>
 				<Button onClick={this.handlePause}>Pause</Button>
 			</div>
 		);

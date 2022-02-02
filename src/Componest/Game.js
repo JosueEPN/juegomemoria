@@ -1,10 +1,17 @@
 import React, { useState, useEffect } from "react";
-
-//import { Howl } from "howler";
-import Card from "./Card";
 import Music from "./Music";
 import Direc1 from "../images/Blackjack.jpg";
 import Direc2 from "../images/Buscaminas.png";
+
+import Card from "./Card";
+
+import {
+  Dropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
+} from "reactstrap";
+
 import { PlayCircleOutlined } from "@ant-design/icons";
 
 import "../Style/App.css";
@@ -13,20 +20,6 @@ import { Button } from "antd";
 import { images } from "../import.js";
 
 function Game() {
-  //sound
-  /*var sound = new Howl({
-    urls: [song],
-    autoplay: true,
-    loop: true,
-    volum: 0.5,
-  });
-
-  const playSoundMusic = () => {
-    sound.play();
-  };*/
-
-  //const puntaje = 0;
-
   //CARTAS
   const [cards, setCards] = useState([]);
   const [firstCard, setFirstCard] = useState({});
@@ -39,6 +32,10 @@ function Game() {
   const [unflippedCards, setUnflippedCards] = useState([]);
 
   const [disabledCards, setDisabledCards] = useState([]);
+
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+
+  const toggle = () => setDropdownOpen((prevState) => !prevState);
 
   const shuffleArray = (array) => {
     for (let i = array.length - 1; i > 0; i--) {
@@ -97,13 +94,7 @@ function Game() {
   };
 
   const resetGame = () => {
-    setUnflippedCards([]);
-    setCards([]);
-    setDisabledCards([]);
-    shuffleArray(images);
-    setCards(images);
-    setCounter(0);
-    startgame(true);
+    window.location.reload(true);
   };
   //Puntaje
   const ubgradePuntaj = () => {
@@ -116,7 +107,7 @@ function Game() {
   return (
     <div className="app">
       <div className="row ">
-        <div className="row">
+        <div className="row Izquierda">
           <div className="col Barra_sup">
             <Button className="btn" size="large">
               Regresar
@@ -160,25 +151,33 @@ function Game() {
             ))}
         </div>
       </div>
-      <div className="row ">
-        <div className="col menu">Menu</div>
-        <div className="col-3 Juego">
-          <div className="row">
-            <div className="col-4">
-              <img src={Direc1} className="Direction" />
-              <h1> Black Jack</h1>
-            </div>
-            <div className="col-4">
-              <img src={Direc2} className="Direction" />
-              <h1>Buscaminas</h1>
-            </div>
+      <div className="row Derecha ">
+        <div className="col Juego">
+          <Dropdown isOpen={dropdownOpen} toggle={toggle}>
+            <DropdownToggle caret>Dropdown</DropdownToggle>
+            <DropdownMenu>
+              <DropdownItem header>Header</DropdownItem>
 
-            <div className="col-2">
-              <Music />
-            </div>
-          </div>
-
-          <div></div>
+              <DropdownItem divider />
+              <DropdownItem>
+                <div className="Game">
+                  <img src={Direc1} className="Direction" />
+                  <h1> Black Jack</h1>
+                </div>
+              </DropdownItem>
+              <DropdownItem>
+                <div className="Game">
+                  <img src={Direc2} className="Direction" />
+                  <h1>Buscaminas</h1>
+                </div>
+              </DropdownItem>
+              <DropdownItem>
+                <div className="Game1">
+                  <Music />
+                </div>
+              </DropdownItem>
+            </DropdownMenu>
+          </Dropdown>
         </div>
       </div>
     </div>
