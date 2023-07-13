@@ -1,21 +1,12 @@
 import React, { useState, useEffect } from "react";
 import Music from "./Music";
-import Direc1 from "../images/Blackjack.jpg";
-import Direc2 from "../images/Buscaminas.png";
-
 import Card from "./Card";
 
-import {
-  Dropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-} from "reactstrap";
-
 import { PlayCircleOutlined } from "@ant-design/icons";
+import { Button, Modal } from "antd";
 
 import "../Style/App.css";
-import { Button } from "antd";
+
 
 import { images } from "../import.js";
 
@@ -32,10 +23,6 @@ function Game() {
   const [unflippedCards, setUnflippedCards] = useState([]);
 
   const [disabledCards, setDisabledCards] = useState([]);
-
-  const [dropdownOpen, setDropdownOpen] = useState(false);
-
-  const toggle = () => setDropdownOpen((prevState) => !prevState);
 
   const shuffleArray = (array) => {
     for (let i = array.length - 1; i > 0; i--) {
@@ -93,9 +80,6 @@ function Game() {
     setSecondCard({});
   };
 
-  const resetGame = () => {
-    window.location.reload(true);
-  };
   //Puntaje
   const ubgradePuntaj = () => {
     setCounter(counter + 100);
@@ -104,82 +88,92 @@ function Game() {
   const startgame = () => {
     setStargame(false);
   };
+
+  const resetGame = () => {
+    setCounter(0);
+    resetCards();
+    setStargame(true);
+
+    //window.location.reload(true);
+  };
+
+  const [showModal, setShowModal] = useState(false);
+
+  useEffect(() => {
+    if (counter === 600) {
+      setShowModal(true);
+    }
+  }, [counter]);
+
+  const handleModalOk = () => {
+    resetGame();
+    setShowModal(false);
+  };
+
+  const handleModalCancel = () => {
+    setShowModal(false);
+  };
+
   return (
     <div className="app">
       <div className="row ">
         <div className="row Izquierda">
           <div className="col Barra_sup">
-            <Button className="btn" size="large">
-              Regresar
-            </Button>
-            <Button
-              className="btn"
-              type="primary"
-              size="large"
-              onClick={resetGame}
-            >
-              Reiniciar
-            </Button>
-          </div>
+            <div>
+              <button
+                className="btn"
+                type="primary"
+                size="large"
+                onClick={resetGame}
+              >
+                Reiniciar
+              </button>
+            </div>
 
-          <div className="row Barra_sup">Puntaje: {counter}</div>
+            <div className="row Barra_sup">Puntaje: {counter}</div>
+
+            <div className="Game1">
+              <Music />
+            </div>
+          </div>
         </div>
-        <div className="col-9 cards-container">
+        <div className="container-pri">
           {Stargame && (
             <div className="Start">
-              <Button
-                type="primary"
-                onClick={startgame}
-                className="btn_start"
-                shape="circle"
-                ghost
-              >
+              <button onClick={startgame} className="btn_start" ghost>
                 <PlayCircleOutlined />
-              </Button>
+              </button>
             </div>
           )}
-          {!Stargame &&
-            cards.map((card, index) => (
-              <Card
-                name={card.player}
-                number={index}
-                frontFace={card.src}
-                flipCard={flipCard}
-                unflippedCards={unflippedCards}
-                disabledCards={disabledCards}
-              />
-            ))}
+          <div className="cards-container">
+            {!Stargame &&
+              cards.map((card, index) => (
+                <Card
+                  name={card.player}
+                  number={index}
+                  frontFace={card.src}
+                  flipCard={flipCard}
+                  unflippedCards={unflippedCards}
+                  disabledCards={disabledCards}
+                />
+              ))}
+          </div>
         </div>
       </div>
-      <div className="row Derecha ">
-        <div className="col Juego">
-          <Dropdown isOpen={dropdownOpen} toggle={toggle}>
-            <DropdownToggle caret>Dropdown</DropdownToggle>
-            <DropdownMenu>
-              <DropdownItem header>Header</DropdownItem>
-
-              <DropdownItem divider />
-              <DropdownItem>
-                <div className="Game">
-                  <img src={Direc1} className="Direction" />
-                  <h1> Black Jack</h1>
-                </div>
-              </DropdownItem>
-              <DropdownItem>
-                <div className="Game">
-                  <img src={Direc2} className="Direction" />
-                  <h1>Buscaminas</h1>
-                </div>
-              </DropdownItem>
-              <DropdownItem>
-                <div className="Game1">
-                  <Music />
-                </div>
-              </DropdownItem>
-            </DropdownMenu>
-          </Dropdown>
-        </div>
-      </div>
+      <Modal
+        visible={showModal}
+        title="¡Terminaste el juego!"
+        onCancel={handleModalCancel}
+        footer={[
+          <Button key="restart" type="primary" onClick={handleModalOk}>
+            Reiniciar
+          </Button>,
+        ]}
+        wrapClassName="transparent-modal" // Agrega esta línea para aplicar estilos personalizados
+        bodyStyle={{ fontSize: "20px" }} // Ajusta el tamaño de las letras en el modal
+      >
+        <p style={{ fontSize: "24px" }}>Tu puntuación final: {counter}</p> {/* Ajusta el tamaño de la puntuación final */}
+      </Modal>
     </div>
   );
 }

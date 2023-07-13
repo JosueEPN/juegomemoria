@@ -2,44 +2,41 @@ import React, { Component } from "react";
 import song from "../media/Sound1.mp3";
 import ReactHowler from "react-howler";
 import { Button } from "antd";
+import "../Style/App.css";
+import { AiFillPauseCircle, AiFillPlayCircle } from "react-icons/ai";
 
 class Music extends Component {
-	constructor() {
-		super();
+  constructor() {
+    super();
 
-		this.state = {
-			playing: false,
-		};
-		this.handlePlay = this.handlePlay.bind(this);
-		this.handlePause = this.handlePause.bind(this);
-	}
+    this.state = {
+      playing: false,
+    };
+    this.handleToggle = this.handleToggle.bind(this);
+  }
 
-	handlePlay() {
-		this.setState({
-			playing: true,
-		});
-	}
+  handleToggle() {
+    this.setState((prevState) => ({
+      playing: !prevState.playing,
+    }));
+  }
 
-	handlePause() {
-		this.setState({
-			playing: false,
-		});
-	}
+  render() {
+    const { playing } = this.state;
 
-	render() {
-		return (
-			<div>
-				<ReactHowler
-					src={song}
-					playing={this.state.playing}
-					loop="true"
-					volume="0.05"
-				/>
-				<Button onClick={this.handlePlay}>Play</Button>
-				<Button onClick={this.handlePause}>Pause</Button>
-			</div>
-		);
-	}
+    return (
+      <div>
+        <ReactHowler src={song} playing={playing} loop={true} volume={0.05} />
+        {playing ? (
+          <Button onClick={this.handleToggle}> <AiFillPauseCircle /> </Button>
+        ) : (
+          <Button onClick={this.handleToggle} className="btn-music">
+           <AiFillPlayCircle />
+          </Button>
+        )}
+      </div>
+    );
+  }
 }
 
 export default Music;

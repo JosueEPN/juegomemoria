@@ -1,27 +1,46 @@
 .app {
-  text-align: center;
-  height: 100vh;
-  width: 100%;
+  height: auto;
+  width: auto;
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-flow: row wrap;
-  justify-content: space-around;
 }
 
 .Barra_sup {
   display: flex;
-  background: grean;
-  color: White;
+  color: rgb(0, 0, 0);
   font-size: 30px;
-  height: 100%;
-  width: 100%;
+  height: auto;
+  width: auto;
+  justify-content: space-between;
+  margin: 5px;
+}
+.container-pri {
+  border: white 5px solid;
+  grid-template-columns: auto auto auto auto;
+  grid-template-rows: auto auto auto;
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
+  justify-items: center;
+  align-items: center;
+ 
+}
+.cards-container {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  grid-template-rows: auto auto auto;
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
+  justify-items: center;
+  align-items: center;
 }
 
-.cards-container {
-  border: white 5px solid;
-  max-width: 880px;
-  max-height: 520px;
+.Start {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 800px;
+  height: 450px;
 }
 
 .card {
@@ -32,15 +51,30 @@
 }
 
 .btn {
-  font-size: 25px;
-  font-weight: bolder;
-  height: 35px;
-  margin-right: 10px;
+  background-color: rgb(180, 180, 255); /* Color morado en reposo */
+  color: #ffffff; /* Color de texto blanco */
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px; /* Redondear los bordes */
+  cursor: pointer;
+  transition: background-color 0.3s ease; 
 }
 
+
 .btn:hover {
-  background: black;
-  color: white;
+  animation: color-change 2s infinite; /* Animación de cambio de color constante */
+}
+
+@keyframes color-change {
+  0% {
+    background-color: rgb(150, 150, 255); /* Color morado más claro */
+  }
+  50% {
+    background-color: rgb(200, 200, 255); /* Otro color morado */
+  }
+  100% {
+    background-color: rgb(150, 150, 255); /* Volver al color morado más claro */
+  }
 }
 .conter {
   display: flex;
@@ -56,21 +90,6 @@
   width: calc(210px - 10px);
 }
 
-.menu {
-  background: grean;
-  color: White;
-  font-size: 30px;
-  height: 50px;
-  width: 50px;
-}
-
-.Juego {
-  border: white 10px solid;
-  padding: 10px;
-  min-width: 300px;
-  min-height: 500px;
-}
-
 .Direction {
   clip-path: circle(38.2% at 50% 50%);
   max-width: 180px;
@@ -81,28 +100,34 @@ h1 {
   margin: 0px;
 }
 
-.Start {
+.btn_start {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 880px;
-  height: 500px;
-  border: white 5px solid;
-  max-width: 880px;
-  max-height: 520px;
+  background:transparent;
+  border: none;
+  font-size: 50px;
+  height: auto;
+  color: rgb(36, 35, 63);
 }
 
-.btn_start {
-  font-size: 70px;
-  font-weight: bolder;
-  height: 80px;
-}
 
 .btn_start:hover {
-  font-size: 65px;
-  color: green;
+  animation: color-change 2s infinite; /* Animación de cambio de color constante */
+  font-size: 60px;
   font-weight: bolder;
-  height: 75px;
+}
+
+@keyframes color-change {
+  0% {
+    color: rgb(36, 35, 63); /* Primer color */
+  }
+  50% {
+    color: rgb(128, 138, 189); /* Segundo color */
+  }
+  100% {
+    color: rgb(46, 53, 88); /* Volver al primer color */
+  }
 }
 
 #audiog {
@@ -148,12 +173,5 @@ h1 {
     width: calc(190px - 10px);
   }
 
-  .Start {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-    border: white 5px solid;
-  }
+
 }
